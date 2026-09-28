@@ -1,38 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Festa do Pato 2030</title>
+        <title>Festa do Pato 2030 — Candidaturas</title>
+        <link rel="stylesheet" href="styles/styles.css" />
     </head>
-
     <body>
-        <header>
-            <a href="index.html">
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMQFiXlwm0d8x86dIm_IYbULxbqgCVguop4YI-2V5Y3793tEoC8q8K1c&s=10"
-                    alt="Logo da Festa do Pato"
-                    height="100"
-                />
-            </a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="candidatura.html">Candidaturas</a>
-            </nav>
-            <p>Bem-vindo à nossa festa!</p>
-        </header>
-        <section>
-            <h2>Candidatura</h2>
-            <form action="./candidaturaAceite.html" method="post">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" required />
-                <br />
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-                <br />
-                <input type="submit" value="Enviar" />
-            </form>
-        </section>
+        <div>
+            <header>
+                <a href="index.html" class="logo-link">
+                    <img
+                        src="images/logo.png"
+                        alt="Logo da Festa do Pato"
+                        height="100"
+                    />
+                </a>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="candidatura.html" class="active">Candidaturas</a>
+                </nav>
+            </header>
+
+            <main>
+                <section>
+                    <h2>Candidatura</h2>
+                    <form action="./candidaturaAceite.html" method="post">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required />
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required />
+                        <input type="submit" value="Enviar Candidatura" />
+                    </form>
+                </section>
+            </main>
+        </div>
+
         <footer>
             <p>&copy; 2030 Festa do Pato. Todos os direitos reservados.</p>
         </footer>

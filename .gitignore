@@ -3,3 +3,9 @@
 
 #ZIP Files
 *.zip
+
+# Agents
+.agents
+
+# Images
+images/*

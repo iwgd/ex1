@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bilhetes — Festa do Pato 2030</title>
+        <link rel="stylesheet" href="styles/styles.css" />
+    </head>
+    <body>
+        <header class="cabecalho">
+            <a href="index.html" class="logo-link">
+                <img
+                    src="images/logo.png"
+                    alt="Logo da Festa do Pato"
+                    height="100"
+                />
+            </a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="candidatura.html">Candidaturas</a>
+            </nav>
+            <a href="bilhetes.html" class="botao-cta">Comprar Bilhete</a>
+        </header>
+
+        <main>
+            <div class="contentor-bilhetes">
+                <h1 class="titulo-bilhetes">Bilhetes</h1>
+
+                <div class="grelha-bilhetes">
+                    <div class="cartao-bilhete">
+                        <h2>Diário</h2>
+                        <p class="preco-bilhete">15€</p>
+                        <p class="descricao-bilhete">Acesso a um dia à tua escolha</p>
+                        <div class="contador-bilhete">
+                            <button class="botao-contador menos" data-target="qty-diario">−</button>
+                            <span class="valor-contador" id="qty-diario">0</span>
+                            <button class="botao-contador mais" data-target="qty-diario">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-bilhete">
+                        <h2>Passe</h2>
+                        <p class="preco-bilhete">35€</p>
+                        <p class="descricao-bilhete">Acesso a todos os dias</p>
+                        <div class="contador-bilhete">
+                            <button class="botao-contador menos" data-target="qty-passe">−</button>
+                            <span class="valor-contador" id="qty-passe">0</span>
+                            <button class="botao-contador mais" data-target="qty-passe">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-bilhete">
+                        <h2>VIP</h2>
+                        <p class="preco-bilhete">75€</p>
+                        <p class="descricao-bilhete">Acesso total + zona VIP + ofertas</p>
+                        <div class="contador-bilhete">
+                            <button class="botao-contador menos" data-target="qty-vip">−</button>
+                            <span class="valor-contador" id="qty-vip">0</span>
+                            <button class="botao-contador mais" data-target="qty-vip">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumo-bilhetes">
+                    <p class="etiqueta-total">Total: <span id="total-value">0€</span></p>
+                    <button class="botao-comprar" id="buy-btn">Comprar</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2030 Festa do Pato. Todos os direitos reservados.</p>
+        </footer>
+
+        <script>
+            const precos = {
+                'qty-diario': 15,
+                'qty-passe': 35,
+                'qty-vip': 75,
+            };
+
+            const quantidades = {
+                'qty-diario': 0,
+                'qty-passe': 0,
+                'qty-vip': 0,
+            };
+
+            function atualizarTotal() {
+                let total = 0;
+                for (const [id, qtd] of Object.entries(quantidades)) {
+                    total += qtd * precos[id];
+                }
+                document.getElementById('total-value').textContent = total + '€';
+            }
+
+            function atualizarBotoes() {
+                document.querySelectorAll('.botao-contador.menos').forEach(btn => {
+                    btn.disabled = quantidades[btn.dataset.target] === 0;
+                });
+            }
+
+            document.querySelectorAll('.botao-contador').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.target;
+                    if (btn.classList.contains('mais')) {
+                        quantidades[target]++;
+                    } else if (btn.classList.contains('menos') && quantidades[target] > 0) {
+                        quantidades[target]--;
+                    }
+                    document.getElementById(target).textContent = quantidades[target];
+                    atualizarTotal();
+                    atualizarBotoes();
+                });
+            });
+
+            atualizarBotoes();
+
+            document.getElementById('buy-btn').addEventListener('click', () => {
+                const total = document.getElementById('total-value').textContent;
+                if (total === '0€') {
+                    alert('Seleciona pelo menos um bilhete.');
+                } else {
+                    alert('Compra efetuada! Total: ' + total);
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="styles/styles.css" />
     </head>
     <body>
-        <header>
+        <header class="cabecalho">
             <a href="index.html" class="logo-link">
                 <img
                     src="images/logo.png"
@@ -15,15 +15,38 @@
                     height="100"
                 />
             </a>
-            <nav>
+            <nav class="main-nav">
                 <a href="index.html" class="active">Home</a>
                 <a href="candidatura.html">Candidaturas</a>
+                <a href="flyer.html">Flyer</a>
             </nav>
+            <a href="bilhetes.html" class="botao-cta">Comprar Bilhete</a>
         </header>
 
         <main>
-            <div class="content">
-                <div>
+            <div class="countdown" id="countdown">
+                <h2 class="countdown-titulo">A Festa do Pato começa em:</h2>
+                <div class="countdown-numeros">
+                    <div class="countdown-item">
+                        <span class="countdown-valor" id="dias">0</span>
+                        <span class="countdown-label">Dias</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-valor" id="horas">0</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-valor" id="minutos">0</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-valor" id="segundos">0</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="conteudo">
+                <div class="coluna-principal">
                     <section>
                         <h2>Sobre a Festa</h2>
                         <p>
@@ -62,16 +85,8 @@
                             </tbody>
                         </table>
                     </section>
-                    <figure>
-                        <img
-                            src="https://media.istockphoto.com/id/464988959/pt/foto/pato-real-com-tra%C3%A7ado-de-recorte.jpg?s=612x612&w=0&k=20&c=SUhSeo67zEVs8bgUm0K-OrMDD4iQ5s75CxaOG4gBI1Y="
-                            alt="Sr. Pato"
-                            height="200"
-                        />
-                        <figcaption>Sr. Pato, o mascote da festa.</figcaption>
-                    </figure>
                 </div>
-                <aside>
+                <aside class="coluna-noticias">
                     <h2>Últimas Notícias</h2>
                     <article>
                         <h3>
@@ -115,5 +130,35 @@
         <footer>
             <p>&copy; 2030 Festa do Pato. Todos os direitos reservados.</p>
         </footer>
+
+        <script>
+            const dataFesta = new Date('2030-08-15T10:00:00');
+
+            function atualizarCountdown() {
+                const agora = new Date();
+                const diff = dataFesta - agora;
+
+                if (diff <= 0) {
+                    document.getElementById('dias').textContent = '0';
+                    document.getElementById('horas').textContent = '0';
+                    document.getElementById('minutos').textContent = '0';
+                    document.getElementById('segundos').textContent = '0';
+                    return;
+                }
+
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('dias').textContent = dias;
+                document.getElementById('horas').textContent = horas;
+                document.getElementById('minutos').textContent = minutos;
+                document.getElementById('segundos').textContent = segundos;
+            }
+
+            atualizarCountdown();
+            setInterval(atualizarCountdown, 1000);
+        </script>
     </body>
 </html>

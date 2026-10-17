@@ -24,6 +24,22 @@
         </header>
 
         <main>
+            <section class="section">
+                <div class="section-head">
+                    <p class="eyebrow">Galeria</p>
+                    <h2>Destaques do Festival</h2>
+                </div>
+
+                <div class="slideshow-container" style="text-align: center;">
+                    <img id="slide-img" src="images/slideshow1.jpeg" alt="Slideshow do evento" />
+                    <div style="margin-top: 1rem;">
+                        <button type="button" id="btn-anterior" class="btn btn-secondary">Anterior</button>
+                        <button type="button" id="btn-seguinte" class="btn btn-primary">Seguinte</button>
+                    </div>
+                </div>
+
+            </section>
+
             <div class="countdown" id="countdown">
                 <h2 class="countdown-titulo">A Festa do Pato começa em:</h2>
                 <div class="countdown-numeros">
@@ -131,34 +147,6 @@
             <p>&copy; 2030 Festa do Pato. Todos os direitos reservados.</p>
         </footer>
 
-        <script>
-            const dataFesta = new Date('2030-08-15T10:00:00');
-
-            function atualizarCountdown() {
-                const agora = new Date();
-                const diff = dataFesta - agora;
-
-                if (diff <= 0) {
-                    document.getElementById('dias').textContent = '0';
-                    document.getElementById('horas').textContent = '0';
-                    document.getElementById('minutos').textContent = '0';
-                    document.getElementById('segundos').textContent = '0';
-                    return;
-                }
-
-                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('dias').textContent = dias;
-                document.getElementById('horas').textContent = horas;
-                document.getElementById('minutos').textContent = minutos;
-                document.getElementById('segundos').textContent = segundos;
-            }
-
-            atualizarCountdown();
-            setInterval(atualizarCountdown, 1000);
-        </script>
+        <script src="scripts/index.js"></script>
     </body>
 </html>
